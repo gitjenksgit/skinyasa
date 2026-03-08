@@ -27,18 +27,23 @@
   <section id="hero" class="hero">
     <div class="hero-content">
       <div class="hero-logo">
-        <svg viewBox="0 0 100 120" width="80" height="96" fill="none" stroke="currentColor" stroke-width="1.2">
-          <line x1="50" y1="10" x2="50" y2="110"/>
-          <line x1="25" y1="35" x2="75" y2="85"/>
-          <line x1="75" y1="35" x2="25" y2="85"/>
-          <circle cx="50" cy="60" r="25"/>
-          <line x1="30" y1="20" x2="70" y2="100"/>
-          <line x1="70" y1="20" x2="30" y2="100"/>
-        </svg>
+        <img src="logo.png" alt="Skinyasa logo" class="logo-img">
       </div>
       <h1>SKINYASA</h1>
       <div class="divider"></div>
       <p class="tagline">Because beauty is more than skin deep</p>
+    </div>
+  </section>
+
+  <!-- Scroll Gallery -->
+  <section class="scroll-gallery">
+    <div class="scroll-gallery-sticky">
+      <img src="gallery/1.jpg" alt="" class="scroll-gallery-img active" data-index="0">
+      <img src="gallery/2.jpg" alt="" class="scroll-gallery-img" data-index="1">
+      <img src="gallery/3.jpg" alt="" class="scroll-gallery-img" data-index="2">
+      <img src="gallery/4.jpg" alt="" class="scroll-gallery-img" data-index="3">
+      <img src="gallery/5.jpg" alt="" class="scroll-gallery-img" data-index="4">
+      <a href="#contact" class="gallery-cta">BOOK A SERVICE</a>
     </div>
   </section>
 
@@ -47,6 +52,9 @@
     <div class="container">
       <h2>About</h2>
       <div class="divider divider-gold"></div>
+      <div class="about-photo">
+        <img src="about.jpg" alt="Client relaxing during a facial treatment at Skinyasa">
+      </div>
       <div class="about-content">
         <p>Skinyasa is a holistic skin and wellness studio founded by Jennifer Smith, a licensed esthetician and Reiki practitioner. We believe true beauty radiates from within — and our treatments are designed to nurture both your skin and your spirit.</p>
         <p>Every session is tailored to you. Whether you're here for a targeted skin treatment or a moment of deep relaxation, you'll leave feeling refreshed, balanced, and glowing.</p>
@@ -114,5 +122,29 @@
     </div>
   </footer>
 
+  <script>
+    (function() {
+      const gallery = document.querySelector('.scroll-gallery');
+      const images = document.querySelectorAll('.scroll-gallery-img');
+      const count = images.length;
+      if (!gallery || count === 0) return;
+
+      function update() {
+        const rect = gallery.getBoundingClientRect();
+        const scrollableHeight = gallery.offsetHeight - window.innerHeight;
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / scrollableHeight));
+        const index = Math.min(count - 1, Math.floor(progress * count));
+
+        images.forEach((img, i) => {
+          img.classList.toggle('active', i === index);
+        });
+
+        requestAnimationFrame(update);
+      }
+
+      requestAnimationFrame(update);
+    })();
+  </script>
 </body>
 </html>
