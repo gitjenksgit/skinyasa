@@ -400,11 +400,11 @@ p {
   }
 
   .hero {
-    min-height: auto;
+    min-height: 100svh;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 130px;
-    padding-bottom: 60px;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .logo-img {
